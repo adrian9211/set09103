@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="webtech-2324-45.napier.ac.uk" id="14b14396-4f8e-447f-852f-e35dd0dab1f9" port="22" nameFormat="DESCRIPTIVE" username="40583048" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

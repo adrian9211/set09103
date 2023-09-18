@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="431baba0-f100-4f02-bebb-3677fd465699" name="napier">
+        <fileTransfer rootFolder="/home/40583048" accessType="SFTP" host="webtech-2324-45.napier.ac.uk" port="22" sshConfigId="14b14396-4f8e-447f-852f-e35dd0dab1f9" sshConfig="40583048@webtech-2324-45.napier.ac.uk:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
