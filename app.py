@@ -1,24 +1,43 @@
-from flask import Flask
+import sqlite3
+import markdown
+from flask import Flask, render_template, request, flash, redirect, url_for
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'random string'
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello'
+def index():
+    conn = get_db_connection()
+    db_notes = conn.execute('SELECT id, created, content FROM notes;').fetchall()
+    conn.close()
 
+    notes = []
+    for note in db_notes:
+       note = dict(note)
+       note['content'] = markdown.markdown(note['content'])
+       notes.append(note)
 
-@app.route('/bye/')
-def bye():
-    return 'Bye!'
+    return render_template('index.html', notes=notes)
 
+@app.route('/create/', methods=('GET', 'POST'))
+def create():
+    conn = get_db_connection()
 
-@app.route('/hello/')
-def hello():
-    return 'Hello Napier!'
+    if request.method == 'POST':
+        content = request.form['content']
+        if not content:
+            flash('Content is required!')
+            return redirect(url_for('index'))
+        conn.execute('INSERT INTO notes (content) VALUES (?)', (content,))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('index'))
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
-
-
+    return render_template('create.html')
