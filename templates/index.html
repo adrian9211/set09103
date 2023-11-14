@@ -5,10 +5,12 @@
     {% for note in notes %}
     <div class="card">
         <div class="card-body">
-            <span class="badge badge-primary">#{{ note['id'] }}</span>
-            <span class="badge badge-default">{{ note['created'] }}</span>
+            <span class="badge bg-primary">#{{ note['id'] }}</span>
+            <span class="badge text-bg-light">{{ note['created'] }}</span>
             <hr>
             <p>{{ note['content'] |safe }}</p>
+            <a href="#" class="btn btn-secondary">Edit</a>
+            <button type="button" class="btn btn-danger">Delete</button>
         </div>
     </div>
     <hr>
