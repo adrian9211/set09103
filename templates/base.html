@@ -24,7 +24,10 @@
             </li>
             {% if current_user.is_authenticated %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('create') }}">New Flask Note</a>
+                <a class="nav-link" href="{{ url_for('notes') }}">My Notes</a>
+            </li>
+                <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('create') }}">New Note</a>
             </li>
             {% endif %}
             {% if current_user.is_authenticated %}
@@ -34,7 +37,7 @@
             {% endif %}
             {% if not current_user.is_authenticated %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('logout') }}">Login</a>
+                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>

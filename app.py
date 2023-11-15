@@ -5,6 +5,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+import sqlite3
+import markdown
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -22,6 +24,10 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,24 +36,10 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
 
 
-# class RegisterForm(FlaskForm):
-#     name = StringField(validators=[
-#                        InputRequired(), Length(min=4, max=40)], render_kw={"placeholder": "Name"})
-#
-#     username = StringField(validators=[
-#                            InputRequired(), Length(min=4, max=40)], render_kw={"placeholder": "Username"})
-#
-#     password = PasswordField(validators=[
-#                              InputRequired(), Length(min=8, max=40)], render_kw={"placeholder": "Password"})
-#
-#     submit = SubmitField('Register')
-#
-#     def validate_username(self, username):
-#         existing_user_username = User.query.filter_by(
-#             username=username.data).first()
-#         if existing_user_username:
-#             raise ValidationError(
-#                 'That username already exists. Please choose a different one.')
+class notes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    created = db.Column(db.DateTime, nullable=False)
+    content = db.Column(db.Text, nullable=False)
 
 
 class LoginForm(FlaskForm):
@@ -65,22 +57,10 @@ def home():
     return render_template('home.html')
 
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         user = User.query.filter_by(username=form.username.data).first()
-#         if user:
-#             if bcrypt.check_password_hash(user.password, form.password.data):
-#                 login_user(user)
-#                 return redirect(url_for('dashboard'))
-#     return render_template('logout.html', form=form)
-#
-
 
 @app.route('/login')
 def login():
-    return render_template('logout.html')
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login_post():
@@ -94,7 +74,7 @@ def login_post():
     # take the user supplied password, hash it, and compare it to the hashed password in database
     if not user or not bcrypt.check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
-        return redirect(url_for('logout')) # if user doesn't exist or password is wrong, reload the page
+        return redirect(url_for('login')) # if user doesn't exist or password is wrong, reload the page
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
@@ -131,7 +111,7 @@ def register():
 def about():
     return render_template('about.html')
 
-@app.route('/create/', methods=('GET', 'POST'))
+@app.route('/create', methods=('GET', 'POST'))
 def create():
     conn = get_db_connection()
 
@@ -181,12 +161,27 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('logout'))
+    return redirect(url_for('login'))
 
 @app.route('/profile')
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
+
+@app.route('/notes')
+@login_required
+def notes():
+    conn = get_db_connection()
+    db_notes = conn.execute('SELECT id, created, content FROM notes;').fetchall()
+    conn.close()
+
+    notes = []
+    for note in db_notes:
+       note = dict(note)
+       note['content'] = markdown.markdown(note['content'])
+       notes.append(note)
+
+    return render_template('notes.html', notes=notes)
 
 if __name__ == "__main__":
     app.run(debug=True)
