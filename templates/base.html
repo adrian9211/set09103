@@ -13,7 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('index')}}">Personal Flask Notepad</a>
+        <a class="navbar-brand" href="{{ url_for('home')}}">Personal Flask Notepad</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,27 +22,29 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('about') }}">About</a>
             </li>
+            {% if current_user.is_authenticated %}
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('create') }}">New Flask Note</a>
             </li>
-{#            {% if current_user.is_authenticated %}#}
+            {% endif %}
+            {% if current_user.is_authenticated %}
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
             </li>
-{#            {% endif %}#}
-{#            {% if not current_user.is_authenticated %}#}
+            {% endif %}
+            {% if not current_user.is_authenticated %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-link" href="{{ url_for('logout') }}">Login</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
             </li>
-{#            {% endif %}#}
-{#            {% if current_user.is_authenticated %}#}
+            {% endif %}
+            {% if current_user.is_authenticated %}
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
             </li>
-{#            {% endif %}#}
+            {% endif %}
             </ul>
         </div>
     </nav>
