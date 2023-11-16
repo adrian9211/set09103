@@ -8,9 +8,9 @@ with open('schema.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO notes (content) VALUES (?)", ('# The First Note',))
-cur.execute("INSERT INTO notes (content) VALUES (?)", ('_Another note_',))
-cur.execute("INSERT INTO notes (content) VALUES (?)", ('Visit [this page](https://www.digitalocean.com/community/tutorials) for more tutorials.',))
+cur.execute("INSERT INTO notes (content,user_id) VALUES (?,?)", ('# The First Note', 1))
+cur.execute("INSERT INTO notes (content,user_id) VALUES (?,?)", ('_Another note_', 1))
+cur.execute("INSERT INTO notes (content,user_id) VALUES (?,?)", ('Visit [this page](https://www.digitalocean.com/community/tutorials) for more tutorials.', 1))
 
 connection.commit()
 connection.close()
