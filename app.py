@@ -149,13 +149,13 @@ def profile():
 
 
 @app.route('/notes')
-# @login_required
+@login_required
 def notes():
     conn = get_db_connection()
     # filter by user id
     id = current_user.id
     # only if user is logged in and user id matches notes will be displayed
-    db_notes = conn.execute('SELECT created, content, user_id FROM notes WHERE user_id = ?;', (id,)).fetchall()
+    db_notes = conn.execute('SELECT created, content, user_id FROM notes WHERE user_id = ?', (id,)).fetchall()
     conn.close()
 
     notes = []
@@ -166,6 +166,34 @@ def notes():
 
     return render_template('notes.html', notes=notes)
 
+
+@app.route('/edit/<int:note_id>', methods=['GET', 'POST'])
+@login_required
+def edit(note_id):
+    conn = get_db_connection()
+
+    if request.method == 'POST':
+        # Update the note content in the database
+        new_content = request.form['content']
+        conn.execute('UPDATE notes SET content = ? WHERE id = ? AND user_id = ?;', (new_content, note_id, current_user.id))
+        conn.commit()
+        conn.close()
+        flash('Note updated successfully!', 'success')
+        return redirect(url_for('notes'))
+
+    # Fetch the current note content for the user
+    db_note = conn.execute('SELECT created, content FROM notes WHERE id = ? AND user_id = ?;', (note_id, current_user.id)).fetchone()
+
+    if db_note is None:
+        flash('Note not found or you do not have permission to edit this note.', 'danger')
+        conn.close()
+        return redirect(url_for('notes'))
+
+    note = dict(db_note)
+    note['content'] = markdown.markdown(note['content'])
+    conn.close()
+
+    return render_template('edit.html', note=note)
 
 if __name__ == "__main__":
     app.run(debug=True)
