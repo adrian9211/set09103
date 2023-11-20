@@ -103,10 +103,11 @@ def create():
 
     if request.method == 'POST':
         content = request.form['content']
+        id = current_user.id
         if not content:
             flash('Content is required!')
             return redirect(url_for('index'))
-        conn.execute('INSERT INTO notes (content, user_id) VALUES (?, ?)', (content, 1))
+        conn.execute('INSERT INTO notes (content, user_id) VALUES (?, ?)', (content, id))
         conn.commit()
         conn.close()
         return redirect(url_for('notes'))
@@ -151,7 +152,10 @@ def profile():
 # @login_required
 def notes():
     conn = get_db_connection()
-    db_notes = conn.execute('SELECT id, created, content, user_id FROM notes;').fetchall()
+    # filter by user id
+    id = current_user.id
+    # only if user is logged in and user id matches notes will be displayed
+    db_notes = conn.execute('SELECT created, content, user_id FROM notes WHERE user_id = ?;', (id,)).fetchall()
     conn.close()
 
     notes = []
