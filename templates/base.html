@@ -53,9 +53,13 @@
     </nav>
     <div class="container">
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger">{{ message }}</div>
-        {% endfor %}
+            {% set category = "success" if message.startswith('Success') else "danger" %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <strong> {{ message }}</strong>
+                </div>
+            {% endfor %}
         {% block content %} {% endblock %}
+
     </div>
 
     <!-- Optional JavaScript -->

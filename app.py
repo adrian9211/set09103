@@ -110,6 +110,7 @@ def create():
         conn.execute('INSERT INTO notes (content, user_id) VALUES (?, ?)', (content, id))
         conn.commit()
         conn.close()
+        flash('Success. Note created!', 'success')
         return redirect(url_for('notes'))
 
     return render_template('create.html')
@@ -119,16 +120,17 @@ def create():
 def signup():
     return render_template('signup.html')
 
+
 @app.route('/signup', methods=['POST'])
 def signup_post():
-
     name = request.form.get('name')
     username = request.form.get('username')
     password = request.form.get('password')
 
-    user = User.query.filter_by(username=username).first() # if this returns a user, then the email already exists in database
+    user = User.query.filter_by(
+        username=username).first()  # if this returns a user, then the email already exists in database
 
-    if user: # if a user is found, we want to redirect back to signup page so user can try again
+    if user:  # if a user is found, we want to redirect back to signup page so user can try again
         flash('Email address already exists')
         return redirect(url_for('signup'))
 
@@ -141,6 +143,7 @@ def signup_post():
     db.session.commit()
 
     return redirect(url_for('login'))
+
 
 @app.route('/profile')
 @login_required
@@ -155,7 +158,7 @@ def notes():
     # filter by user id
     id = current_user.id
     # only if user is logged in and user id matches notes will be displayed
-    db_notes = conn.execute('SELECT created, content, user_id FROM notes WHERE user_id = ?', (id,)).fetchall()
+    db_notes = conn.execute('SELECT id, created, content, user_id FROM notes WHERE user_id = ?', (id,)).fetchall()
     conn.close()
 
     notes = []
@@ -175,14 +178,16 @@ def edit(note_id):
     if request.method == 'POST':
         # Update the note content in the database
         new_content = request.form['content']
-        conn.execute('UPDATE notes SET content = ? WHERE id = ? AND user_id = ?;', (new_content, note_id, current_user.id))
+        conn.execute('UPDATE notes SET content = ? WHERE id = ? AND user_id = ?;',
+                     (new_content, note_id, current_user.id))
         conn.commit()
         conn.close()
-        flash('Note updated successfully!', 'success')
+        flash('Success. Note updated!', 'success')
         return redirect(url_for('notes'))
 
     # Fetch the current note content for the user
-    db_note = conn.execute('SELECT created, content FROM notes WHERE id = ? AND user_id = ?;', (note_id, current_user.id)).fetchone()
+    db_note = conn.execute('SELECT created, content FROM notes WHERE id = ? AND user_id = ?;',
+                           (note_id, current_user.id)).fetchone()
 
     if db_note is None:
         flash('Note not found or you do not have permission to edit this note.', 'danger')
@@ -194,6 +199,28 @@ def edit(note_id):
     conn.close()
 
     return render_template('edit.html', note=note)
+
+
+
+@app.route('/delete/<int:note_id>', methods=['POST'])
+@login_required
+def delete(note_id):
+    conn = get_db_connection()
+
+    # Check if the note with the given ID exists and belongs to the current user
+    result = conn.execute('SELECT id FROM notes WHERE id = ? AND user_id = ?;', (note_id, current_user.id)).fetchone()
+
+    if result:
+        # If the note exists and belongs to the user, delete it
+        conn.execute('DELETE FROM notes WHERE id = ?;', (note_id,))
+        conn.commit()
+        conn.close()
+        flash('Success. Note deleted!', 'success')
+    else:
+        flash('Note not found or you do not have permission to delete this note.', 'danger')
+
+    return redirect(url_for('notes'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
