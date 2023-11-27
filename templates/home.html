@@ -1,19 +1,58 @@
 
 {% extends 'base.html' %}
+{% block title %} Home {% endblock %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to Personal Falsk Notepad {% endblock %}</h1>
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="..." class="d-block w-100" alt="...">
+                <img src="../static/img/header.jpg" class="d-block w-100" alt="header">
             </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+            <div class="overlay p-lg-5 p-md-3 p-xs-1">
+                <span class="muted-text pt-4">Why us?</span>
+                <h1>Flask Notes</h1>
+                <h2>Introduction</h2>
+                <p>
+                Welcome to Personal Falsk Notepad, markdown interpreter, a secure and user-friendly platform designed for effortless note-taking and organization. Dive into the simplicity of markdown formatting while enjoying the peace of mind that comes with robust security features.
+                <br>
+                <br>
+                This website empowers you to create, edit, and store personal notes seamlessly. Leverage the intuitive markdown editor to express your thoughts, ideas, and tasks with clarity. Whether you're a seasoned markdown user or a beginner, this platform provides an accessible and efficient environment for all.</p>
             </div>
         </div>
+    </div>
+{# Content #}
+    <div class="main-page-section">
+    <h3 class="text-center"> Get Started</h3>
+        <hr class="mx-auto">
+    <div class="row mb-4 mb-sm-2 ">
+        <div class="col-4 center-grid">
+            <img src="../static/img/evn.png" class="img-fluid" alt="img">
+        </div>
+        <div class="col-6 ">
+            <span class="muted-text">MINIMALISM</span>
+            <h4>Register</h4>
+            <p>Register for an account to get started. You can register by clicking the register button on the top right corner of the page. You will be redirected to the registration page where you will be required to fill in your details. Once you have filled in your details, click the register button to register.</p>
+        </div>
+    </div>
+    <div class="row mt-4 mt-sm-2">
+        <div class="col-4 center-grid">
+            <img src="../static/img/markdown.jpg" class="img-fluid" alt="img">
+        </div>
+        <div class="col-6 ">
+            <span class="muted-text">LANGUAGE</span>
+            <h4>Why Markdown</h4>
+            <p>Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. Created by John Gruber in 2004, Markdown is now one of the world’s most popular markup languages.</p>
+        </div>
+    </div>
+{# Content #}
+
+{# Content next #}
+        <div class="main-page-section2">
+            <h3 class="text-center"> Is it worth to keep notes?</h3>
+                <hr class="mx-auto">
+                <p class="text-center main-page-sentence">Yes, keeping notes is worth it. Notes help capture and organize valuable information, ideas, and insights, making it easier to reference and build on them, ultimately enhancing productivity and learning.</p>
+        </div>
+{# Content next #}
+
     </div>
 {% endblock %}
