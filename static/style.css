@@ -64,6 +64,13 @@ body {
       flex-direction: column;
     }
 
+.center-grid img{
+    transition: transform .2s;
+}
+
+.center-grid img:hover{
+    transform: scale(1.2);
+}
 .main-page-section {
     margin-top: 2rem;
     margin-bottom: 5rem;
@@ -144,3 +151,4 @@ footer {
     margin-top: 5rem;
     margin-bottom: 5rem;
 }
+
