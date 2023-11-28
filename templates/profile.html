@@ -3,7 +3,87 @@
 {% extends "base.html" %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
-<h1 class="title">
-  Welcome, {{ name }}!
-</h1>
+
+    {# Content Dashboard #}
+    <div class="dashboard-page-section">
+        <h3 class="text-center"> Dashboard</h3>
+            <hr class="mx-auto tag2">
+        <div class="row mb-4 mb-sm-2 ">
+            <div class="col-4 center-grid">
+                <img src="../static/img/user.jpg" class="img-fluid profile-picture-img" alt="img">
+            </div>
+            <div class="col-6 ">
+                <h4>{{ name }}</h4>
+                <span class="muted-text">@{{ username }}</span>
+                <p>Welcome to the dashboard. Once logged in, you can add new notes and view your previous notes. All data can be modified and deleted at any time. Please note that this process is irreversible. <br> Good luck! </p>
+            </div>
+        </div>
+    </div>
+
+        <div class="row mb-4 mb-sm-2 ">
+            <div class="col-6">
+                <div class="main-page-section2">
+            <h3 class="text-center"> Is it worth to keep notes?</h3>
+                <hr class="mx-auto tag2">
+                <p class="text-center main-page-sentence">Yes, keeping notes is worth it. Notes help capture and organize valuable information, ideas, and insights, making it easier to reference and build on them, ultimately enhancing productivity and learning.</p>
+        </div>
+            </div>
+            <div class="col-6 ">
+                <img src="../static/img/note1.jpg" class="img-fluid" alt="img">
+            </div>
+        </div>
+
+
+     <div class="row mb-4 mb-sm-2 ">
+            <div class="col-6">
+                <img src="../static/img/note2.jpg" class="img-fluid" alt="img">
+            </div>
+            <div class="col-6 ">
+             <div class="main-page-section3">
+                <h3 class="text-center"> Why should you keep notes?</h3>
+                <hr class="mx-auto tag2">
+                <p class="text-center main-page-sentence">Taking notes is a great way to remember important ideas your professor emphasized in class. Not only does taking notes help when preparing for an exam, but it also to forces you to listen carefully during lectures. Actively listening in class can help you focus and better understand main concepts that will show up later on exams.</p>
+            </div>
+            </div>
+        </div>
+
+     <div class="row mb-4 mb-sm-2 ">
+            <div class="col-6">
+               <div class="main-page-section4">
+                <h3 class="text-center"> How to take notes?</h3>
+                <hr class="mx-auto tag2">
+                <p class="text-center main-page-sentence">The best way to take notes is to write down anything that is important to you. If you are a visual learner, you may benefit from writing down charts or graphs that help you understand a topic. If you learn best through listening, try writing down questions you have about the material or something interesting your professor said. Try to leave out any information that is irrelevant or that you don’t understand. If you don’t understand something, you can always ask your professor about it later.</p>
+        </div>
+            </div>
+            <div class="col-6 ">
+                <img src="../static/img/note3.jpg" class="img-fluid" alt="img">
+            </div>
+        </div>
+
+     <div class="row mb-4 mb-sm-2 ">
+            <div class="col-6">
+                <img src="../static/img/note4.jpg" class="img-fluid" alt="img">
+            </div>
+            <div class="col-6 ">
+
+                <div class="main-page-section5">
+                    <h3 class="text-center"> How to organize your notes?</h3>
+                    <hr class="mx-auto tag2">
+                    <p class="text-center main-page-sentence">The best way to organize your notes is to keep them in a notebook or binder. One of the easiest way to keep notes synced is to use this website from any devices You want. Make sure to date each entry and organize your notes by subject and topic. Keep your notes in order so you can refer back to them when studying or completing an assignment.</p>
+                </div>
+            </div>
+        </div>
+
+     <div class="row mb-5 mb-sm-2 p-5">
+            <div class="col-6">
+                <div class="main-page-section6">
+            <h3 class="text-center"> How to take notes on a computer?</h3>
+                <hr class="mx-auto tag2">
+                <p class="text-center main-page-sentence">If you prefer to take notes on a computer, there are many different note-taking applications you can use. One of the most popular applications is Microsoft OneNote. OneNote allows you to create different notebooks for each class and topic, and it allows you to insert images, charts, and graphs. You can also record lectures or meetings and take notes simultaneously. If you prefer to take notes on your computer, make sure to back up your files in case your computer crashes or is damaged.</p>
+        </div>
+            </div>
+            <div class="col-6 ">
+                <img src="../static/img/note5.jpg" class="img-fluid" alt="img">
+            </div>
+        </div>
 {% endblock %}

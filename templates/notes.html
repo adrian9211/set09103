@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to Personal Falsk Notepad {% endblock %}</h1>
+    {% block title %} Notes {% endblock %}
+    <h3 class="text-center"> Your Notes</h3>
+    <hr class="mx-auto tag2"/>
     {% for note in notes %}
     <div class="card">
         <div class="card-body">
