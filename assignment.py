@@ -144,6 +144,9 @@ def signup_post():
 
     return redirect(url_for('login'))
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
 
 @app.route('/profile')
 @login_required

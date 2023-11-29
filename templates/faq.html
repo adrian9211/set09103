@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %} FAQ {% endblock %}
+
+{% block content %}
+        <div class="faq-container">
+            <h3 class="text-center mt-5 mb-3"> Flask Notes - FAQ</h3>
+            <hr class="mx-auto tag2">
+            <h4 class="mt-5 mb-5">General Questions</h4>
+
+            <div class="faq-question" onclick="toggleAnswer('question1')">
+              <strong>Q: What is Markdown?</strong>
+            </div>
+            <div class="faq-answer" id="question1">
+              <p><strong>A:</strong> Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. It's easy to read and write, and it can be converted into HTML and other formats.</p>
+            </div>
+
+            <div class="faq-question" onclick="toggleAnswer('question2')">
+              <strong>Q: How do I use this website to create Markdown notes?</strong>
+            </div>
+            <div class="faq-answer" id="question2">
+              <p><strong>A:</strong> Simply navigate to the note creation page, enter your Markdown content in the provided editor, and save your note. You can then view and edit your notes whenever you'd like.</p>
+            </div>
+
+            <div class="faq-question" onclick="toggleAnswer('question6')">
+              <strong>Q: Do I heve to create an account?</strong>
+            </div>
+            <div class="faq-answer" id="question6">
+              <p><strong>A:</strong> Yes, It is necessary to create an account to use this website. Website deliver secure way of data storage. You own your own data</p>
+            </div>
+            <h4 class="mt-5 mb-5">Markdown Syntax</h4>
+
+            <div class="faq-question" onclick="toggleAnswer('question3')">
+              <strong>Q: What are headers in Markdown?</strong>
+            </div>
+            <div class="faq-answer" id="question3">
+              <p><strong>A:</strong> Headers are defined by using hash (#) characters at the beginning of a line, followed by the header text. The number of hash characters determines the header level (e.g., # for heading level 1, ## for heading level 2).</p>
+            </div>
+
+            <div class="faq-question" onclick="toggleAnswer('question4')">
+              <strong>Q: How do I create links in Markdown?</strong>
+            </div>
+            <div class="faq-answer" id="question4">
+              <p><strong>A:</strong> To create links, use square brackets to define the link text and parentheses to define the URL. For example, `[Google](https://www.google.com)` creates a link to Google.</p>
+            </div>
+
+            <div class="faq-question" onclick="toggleAnswer('question5')">
+              <strong>Q: Can I include images in Markdown?</strong>
+            </div>
+            <div class="faq-answer" id="question5">
+              <p><strong>A:</strong> Yes, you can include images using the syntax `![Alt text](image-url)`. The alt text provides a description of the image, and the image URL points to the location of the image file.</p>
+            </div>
+
+            <h4 class="mt-5 mb-5">Advanced Usage</h4>
+
+            <div class="faq-question" onclick="toggleAnswer('question7')">
+              <strong>Q: Are there tables in Markdown?</strong>
+            </div>
+            <div class="faq-answer" id="question7">
+              <p><strong>A:</strong> Yes, you can create tables using a combination of pipes (`|`) and hyphens (`-`). Check the Markdown documentation for details on table syntax.</p>
+            </div>
+
+            <div class="faq-question" onclick="toggleAnswer('question8')">
+              <strong>Q: How can I include code blocks in my notes?</strong>
+            </div>
+            <div class="faq-answer" id="question8">
+              <p><strong>A:</strong> Code blocks can be added by indenting the code with four spaces or using backticks (\`). For multiline code blocks, use three backticks (\`\`\`).</p>
+            </div>
+        </div>
+{% endblock %}

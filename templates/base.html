@@ -55,7 +55,7 @@
                         </a>
                         <ul class="dropdown-menu me-5" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ url_for('profile') }}">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">FAQ</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('faq') }}">FAQ</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li ><a class="dropdown-item logout " href="{{ url_for('logout') }}">Logout</a></li>
                         </ul>
@@ -104,6 +104,10 @@
             div.style.display = "block";
           }
 
+          function toggleAnswer(id) {
+            var answer = document.getElementById(id);
+            answer.classList.toggle('show');
+            }
         </script>
   </body>
 </html>
