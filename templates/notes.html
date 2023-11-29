@@ -10,9 +10,8 @@
             <span class="badge bg-primary">#{{ note['id'] }}</span>
             <span class="badge text-bg-light">{{ note['created'] }}</span>
             <hr>
+            <p>Your note below:</p>
             <p>{{ note['content'] |safe }}</p>
-            <p>{{ note['id'] |safe }}</p>
-            // form that will be used to edit and delete notes
            <form method="post" action="{{ url_for('delete', note_id=note['id']) }}" style="display:inline;">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
