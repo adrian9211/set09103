@@ -1,18 +1,19 @@
-
 {% extends 'base.html' %}
+{% block title %} Edit Note {% endblock %}
 
 {% block content %}
-    <h1>{% block title %} Edit Note {% endblock %}</h1>
+    <h3 class="text-center pt-5"> Add New Note</h3>
+    <hr class="mx-auto tag2">
     <form method="post">
     <div class="form-group">
         <label for="content">Note Content</label>
         <textarea type="text" name="content"
                placeholder="{{ note['content']}}" class="form-control"
-               value="{{ request.form['content'] }}" autofocus required></textarea>
+               value="{{ request.form['content'] }}" rows="20"  autofocus required></textarea>
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary pt-3 pb-5">Submit</button>
     </div>
     </form>
 

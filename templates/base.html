@@ -15,52 +15,54 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('home')}}">
-            <img src="{{ url_for('static', filename='img/logo.png') }}"  class="d-inline-block align-top ps-4" alt="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav navbar-left me-auto">
-                 <li class="nav-item active">
-                    <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('home') }}">Home</a></button>
-                </li>
-                <li class="nav-item active">
-                    <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('about') }}">About</a></button>
-                </li>
-                {% if current_user.is_authenticated %}
-                <li class="nav-item active">
-                    <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('notes') }}">My Notes</a></button>
-                </li>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('home')}}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}"  class="d-inline-block align-top ps-4" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav navbar-left me-auto">
+                     <li class="nav-item active">
+                        <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('home') }}">Home</a></button>
+                    </li>
                     <li class="nav-item active">
-                    <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('create') }}">New Note</a></button>
-                </li>
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav navbar-right">
-                {% if not current_user.is_authenticated %}
-                <li class="nav-item active " >
-                    <button class="btn btn-light btn2 " type="button"><a class="nav-link" href="{{ url_for('login') }}">Login</a></button>
-                </li>
-                <li class="nav-item active">
-                    <button class="btn btn-light btn2" type="button"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></button>
-                </li>
-                {% endif %}
-            {% if current_user.is_authenticated %}
-                <li class="nav-item dropdown me-5">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ url_for('static', filename='img/user.jpg') }}"  class="profile-link" alt="profile">
-                    </a>
-                    <ul class="dropdown-menu me-5" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url_for('profile') }}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="#">FAQ</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li ><a class="dropdown-item logout " href="{{ url_for('logout') }}">Logout</a></li>
-                    </ul>
-                </li>
-                {% endif %}
-            </ul>
+                        <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('about') }}">About</a></button>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item active">
+                        <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('notes') }}">My Notes</a></button>
+                    </li>
+                        <li class="nav-item active">
+                        <button class="btn btn-light" type="button"><a class="nav-link" href="{{ url_for('create') }}">New Note</a></button>
+                    </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item active " >
+                        <button class="btn btn-light btn2 " type="button"><a class="nav-link" href="{{ url_for('login') }}">Login</a></button>
+                    </li>
+                    <li class="nav-item active">
+                        <button class="btn btn-light btn2" type="button"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></button>
+                    </li>
+                    {% endif %}
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item dropdown me-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ url_for('static', filename='img/user.jpg') }}"  class="profile-link" alt="profile">
+                        </a>
+                        <ul class="dropdown-menu me-5" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('profile') }}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">FAQ</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li ><a class="dropdown-item logout " href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container">
