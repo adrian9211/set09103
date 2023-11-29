@@ -30,6 +30,10 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def get_db_connection_user():
+    conn = sqlite3.connect('./instance/database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -144,6 +148,30 @@ def signup_post():
 
     return redirect(url_for('login'))
 
+@app.route('/delete_user/<int:user_id>', methods=['POST'])
+@login_required
+def delete_user(user_id):
+    conn = get_db_connection_user()
+
+    # Check if the user with the given ID exists and is the current user
+    result = conn.execute('SELECT id FROM user WHERE id = ? AND id = ?;', (user_id, current_user.id)).fetchone()
+
+
+    if result:
+        # If the user exists and is the current user, delete the account
+        conn.execute('DELETE FROM user WHERE id = ?;', (user_id,))
+        conn.commit()
+        conn.close()
+
+        # Log the user out after deleting the account
+        logout_user()
+
+        flash('Success. Your account has been deleted!', 'success')
+        return redirect(url_for('login'))
+    else:
+        flash('User not found or you do not have permission to delete this account.', 'danger')
+        return redirect(url_for('profile'))
+
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
@@ -151,7 +179,7 @@ def faq():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name, username=current_user.username)
+    return render_template('profile.html', name=current_user.name, username=current_user.username, id=current_user.id)
 
 
 @app.route('/notes')
@@ -223,6 +251,8 @@ def delete(note_id):
         flash('Note not found or you do not have permission to delete this note.', 'danger')
 
     return redirect(url_for('notes'))
+
+
 
 
 if __name__ == "__main__":
