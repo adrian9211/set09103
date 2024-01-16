@@ -1,67 +1,18 @@
 {% extends 'base.html' %}
-{% block title %} Dashboard {% endblock %}
 
 {% block content %}
-    <h3 class="text-center pt-5"> Add New Note</h3>
-    <hr class="mx-auto tag2">
+    <h1>{% block title %} Add a New Note {% endblock %}</h1>
     <form method="post">
     <div class="form-group">
-        <label for="content pb-2"> Your Content</label>
+        <label for="content">Note Content</label>
         <textarea type="text" name="content"
                placeholder="Note content, you can use Markdown syntax" class="form-control"
-               value="{{ request.form['content'] }}" rows="20" autofocus required></textarea>
+               value="{{ request.form['content'] }}" autofocus></textarea>
     </div>
 
-    <div class="form-group pt-3 pb-5 ">
+    <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
-
     </div>
-
-    <button class="btn btn-warning mb-5" onclick="show()">Show all</button>
-    <button class="btn btn-warning mb-5" onclick="hide()">Hide all</button>
     </form>
 
-    <div id="hide">
-        <div class="card" >
-            <div class="card-body">
-                <span class="badge bg-primary">#1</span>
-                <hr>
-                <p><h1>Get Started</h1>
-                <p>This is a simple website that allows you to take notes in Markdown language. Markdown is a lightweight markup language that makes it easy to format text with simple syntax.</p></p>
-
-            </div>
-        </div>
-        <hr>
-
-            <div class="card" id="hide2">
-                <div class="card-body">
-                    <span class="badge bg-primary">#2</span>
-                    <hr>
-                    <p><h1> Markdown Notepad Quick Guide</h1>
-                        <p><br>
-                        <h1>Headers</h1></p>
-                        <p><br> <code># Header 1</code> <br> <code>## Header 2</code>  <br> <code>### Header 3</code><br />
-                        <h1>Emphasis</h1></p>
-                        <p><code>*italic* or _italic_</code> <br> <code>**bold** or __bold__</code><br />
-                        <h1>Lists</h1></p>
-                        <p><code>- Item 1</code> <br> <code>- Item 2</code> <br> <code>- Subitem 2.1</code> <br> <code>- Subitem 2.2</code><br />
-                        <h1>Ordered Lists</h1></p>
-                        <p><code>1. First item</code> <br> <code>2. Second item</code>
-                        <h1>Links</h1></p>
-                        <p><code>[Link Text](https://www.example.com)</code>
-                        <h1>Images</h1></p>
-                        <p><code>![Alt Text](image-url.jpg)</code>
-                        <h1>Blockquotes</h1></p>
-                        <p><code>&gt; This is a blockquote.</code>
-                        <h1>Code</h1></p>
-                        <p><code>Inline code:</code>code <br> Code block: <br> <code>&lt;br&gt;</code> Your code <code>&lt;br&gt;</code>
-                        <h1>Horizotal rule</h1></p>
-                        <p><code>---</code>
-                        <h1>Tables</h1></p>
-                        <p><code>| Header 1 | Header 2 |</code><br><code>|----------|----------|</code><br><code>| Row 1, Col 1 | Row 1, Col 2 |</code><br><code>| Row 2, Col 1 | Row 2, Col 2 |</code> </p></p>
-                </div>
-                <h3 class="ps-3">Learn the basic syntax of Markdown by visiting the <a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown Guide</a>.</h3>
-            </div>
-        <hr>
-    </div>
 {% endblock %}

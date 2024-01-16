@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %} About {% endblock %}
+
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <img src="../static/img/about_page_logo.png" class="img-fluid centre-grid "  id="aboutimg" alt="img">
+</div>
+    <div class="box2 z-0">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 ps-5 pt-5 z-1">
+                <h2 class="pb-3">Story behind Our project</h2>
+                <p>Our mission is to provide a simple and user-friendly platform for taking notes in Markdown format. Markdown is a plain text formatting syntax that is both easy to learn and powerful.</p>
+            </div>
+            <div class="col-md-6  col-sm-12 pt-5 pe-5 z-1">
+                <img src="../static/img/notepad2.jpg" class="img-fluid"  id="aboutimgbox" alt="img">
+            </div>
+        </div>
+        <div class="row justify-content-center z-1">
+            <div class="col-md-6 col-sm-10">
+                <img src="../static/img/markdown3.png" class="img-fluid" alt="img">
+                <h2 class="pt-5 pb-5 p-sm-1 mt-5 mt-sm-1 style"> Why Markdown?</h2>
+                <p class="mt-5 mt-sm-1 style">Markdown allows you to focus on your content without getting distracted by complex formatting tools. It's perfect for note-taking, writing, and organizing your thoughts.</p>
+                <img src="../static/img/about-markdown.png" class="img-fluid mt-5 mt-sm-1"   alt="img">
+                <h2 class="pt-5 pb-5 p-sm-1 style"> Want to know more about language syntax?</h2>
+                <h3 class="style">Markdown Resources</h3>
+                <p>Learn about good Markdown syntax from the following resources:</p>
+                <ul>
+                  <li><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">1. Markdown Guide - Basic Syntax</a></li>
+                  <li><a href="https://www.markdownguide.org/extended-syntax/" target="_blank">2. Markdown Guide - Extended Syntax</a></li>
+                </ul>
+
+                <p>Explore the Markdown community resources:</p>
+
+                <ul>
+                  <li><a href="https://www.markdownguide.org/" target="_blank">1. Markdown Guide</a></li>
+                  <li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">2. Markdown Cheatsheet on GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-page-section2">
+        <h3 class="text-center"> Still not sure and want to know more about the project?</h3>
+        <hr class="mx-auto tag2">
+        <p class="text-center main-page-sentence">Feel free to reach out to us through social media! <br> <br> Links in the footer.</p>
+    </div>
+{% endblock %}
